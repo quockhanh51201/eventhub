@@ -2,7 +2,6 @@ import React from 'react'
 import { ButtonComponents, SectionComponents, SpaceComponents, TextComponents } from '../../../components'
 import { appColor } from '../../../constants/appColors'
 import { appFontFamilies } from '../../../constants/appFontFamilies'
-import { View } from 'react-native'
 import { Facebook, Google } from '../../../assets/svgs'
 
 const SocialLogin = () => {
@@ -23,9 +22,9 @@ const SocialLogin = () => {
                 textFont={appFontFamilies.regular}
                 type='primary'
                 color={appColor.white}
-                // icon={
-                //     <Google />
-                // }
+                icon={
+                    <Google />
+                }
                 iconFlex='left'
 
             />
@@ -36,9 +35,9 @@ const SocialLogin = () => {
                 textFont={appFontFamilies.regular}
                 type='primary'
                 color={appColor.white}
-                // icon={
-                //     <Facebook />
-                // }
+                icon={
+                    <Facebook />
+                }
                 iconFlex='left'
 
             />
