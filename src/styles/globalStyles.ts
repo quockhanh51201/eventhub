@@ -45,6 +45,14 @@ export const globalStyles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'flex-start',
         alignItems: 'center'
+    },
+    iconContainer: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#3366FF',
+        width: 30,
+        height: 30,
+        borderRadius: 100
     }
 })
 // export const heightStatusBar = () => Platform.OS == 'android' ? 20 : getStatusBarHeight() + isDynamicIsland() ? 35 : 0;

@@ -24,7 +24,6 @@ const SignUpScreen = ({ navigation }: any) => {
   const [values, setValues] = useState(initState)
   const [isLoading, setIsLoading] = useState(false)
 
-  const dispatch = useDispatch()
 
   const handleChangeValue = (key: string, value: string) => {
     const data: any = { ...values }
@@ -43,7 +42,7 @@ const SignUpScreen = ({ navigation }: any) => {
           type: 'danger',
           icon: 'warning'
         })
-        // return
+        return
       }
       // check pass Khanh123
       if (!passValidate) {
@@ -59,35 +58,18 @@ const SignUpScreen = ({ navigation }: any) => {
         showToastMsg({
           message: 'Comfirm Password không giống Password!',
           type: 'danger',
-          icon: 'warning'
+          icon: 'warning',
         })
         return
       }
 
       setIsLoading(true)
       try {
-        // const res = await authenticationAPI.HandleAuthantication(
-        //   '/register',
-        //   {
-        //     useName: values.useName,
-        //     email: values.email,
-        //     pass: values.pass,
-        //   },
-        //   'post'
-        // )
-        // asyncStorage.addStorage(appStorage.token, res.data.accessToken)
-        // asyncStorage.addStorage(appStorage.useID, res.data.id)
-        // asyncStorage.addStorage(appStorage.useEmail, res.data.email)
-        // dispatch(addAuth(res.data))
-        // console.log(res)
-        // setIsLoading(false)
-
         const res = await authenticationAPI.HandleAuthantication(
           '/verification',
           { email: values.email },
           'post'
         )
-        // console.log(values)
         navigation.navigate('VerificationScreen', {
           res,
           values
@@ -104,8 +86,8 @@ const SignUpScreen = ({ navigation }: any) => {
         icon: 'warning'
       })
     }
-
   }
+
   return (
     <ContainerComponents isImageBackground isScroll back>
       <SectionComponents>
