@@ -13,11 +13,13 @@ import { useDispatch } from 'react-redux'
 import { addAuth } from '../../redux/reducers/authReducer'
 import asyncStorage from '../../utils/asyncStorage/asyncStorage'
 import { appStorage } from '../../constants/appStorage'
+import { LoadingModal } from '../../Modals'
 
 const LoginScreen = ({ navigation }: any) => {
   const [email, setEmail] = useState('')
   const [pass, setPass] = useState('')
   const [isRemember, setIsRemember] = useState(true)
+  const [isLoadding, setIsLoadding] = useState(false)
   const dispatch = useDispatch()
 
   // ===============
@@ -31,6 +33,7 @@ const LoginScreen = ({ navigation }: any) => {
       })
       return
     }
+    setIsLoadding(true)
     try {
       const res = await authenticationAPI.HandleAuthantication(
         '/login',
@@ -48,9 +51,12 @@ const LoginScreen = ({ navigation }: any) => {
       } else {
         asyncStorage.addStorage(appStorage.useEmail, res.data.email)
       }
+      setIsLoadding(false)
       console.log(res)
     } catch (error) {
       console.log(error)
+      setIsLoadding(false)
+
     }
   }
 
@@ -149,7 +155,7 @@ const LoginScreen = ({ navigation }: any) => {
           />
         </RowComponents>
       </SectionComponents>
-
+      <LoadingModal visible={isLoadding} />
     </ContainerComponents>
   )
 }

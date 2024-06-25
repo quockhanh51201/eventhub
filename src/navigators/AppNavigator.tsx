@@ -1,5 +1,5 @@
 import { View, Text } from 'react-native'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useLayoutEffect, useState } from 'react'
 import MainNavigation from './MainNavigation'
 import AuthNavigator from './AuthNavigator'
 import { useAsyncStorage } from '@react-native-async-storage/async-storage'
@@ -14,6 +14,11 @@ const AppNavigator = () => {
     const [token, setToken] = useState<string | null>('')
     const [isShowSplash, setIsShowSplash] = useState(true)
 
+
+    useLayoutEffect(() => {
+        checkLogin()
+    }, [auth])
+
     useEffect(() => {
         const timeOut = setTimeout(() => {
             setIsShowSplash(false)
@@ -25,9 +30,7 @@ const AppNavigator = () => {
     const checkLogin = async () => {
         setToken(await getItem());
     }
-    useEffect(() => {
-        checkLogin()
-    }, [auth])
+
     return (
         <>
             {
