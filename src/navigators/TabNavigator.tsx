@@ -6,7 +6,7 @@ import { AddNewScreen } from '../screens';
 import MapNavigator from './MapNavigator';
 import ProfileNavigator from './ProfileNavigator';
 import { appColor } from '../constants/appColors';
-import { TextComponents } from '../components';
+import { CirleComponents, TextComponents } from '../components';
 import { Platform, View } from 'react-native';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import { AddSquare, Calendar, Location, User } from 'iconsax-react-native';
@@ -40,19 +40,9 @@ const TabNavigator = () => {
             icon = <User variant='Bold' size={size} color={color} />
             break
           case 'Add':
-            icon = <View
-              style={[globalStyles.shadow, {
-                width: 52,
-                height: 52,
-                borderRadius: 100,
-                justifyContent: 'center',
-                backgroundColor: appColor.primary,
-                alignItems: 'center',
-                marginTop: -40
-              }]}
-            >
+            icon = <CirleComponents size={52} styles={{ marginTop: -40 }}>
               <AddSquare size={24} color={appColor.white} variant='Bold' />
-            </View>
+            </CirleComponents>
             break
         }
         return icon
