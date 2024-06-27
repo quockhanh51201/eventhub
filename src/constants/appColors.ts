@@ -3,6 +3,7 @@ export const appColor = {
     gray2: '#DADADA',
     gray3: '#E4DEDE',
     gray4: '#9D9898',
+    gray5: '#D9D9D9',
     white: 'white',
     black: 'black',
     primary: '#3D56F0',

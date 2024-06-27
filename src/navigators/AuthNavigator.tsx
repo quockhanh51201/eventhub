@@ -21,9 +21,6 @@ const AuthNavigator = () => {
         <Stack.Navigator screenOptions={{
             headerShown: false
         }}>
-            {/* ========== */}
-            {/* <Stack.Screen name='Test' component={test} /> */}
-            {/* ===== */}
 
             {
                 !isExistingUser && < Stack.Screen name='Onboarding' component={Onboarding} />

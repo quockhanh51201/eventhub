@@ -1,5 +1,5 @@
 import { ArrowCircleRight2, Lock, Sms } from 'iconsax-react-native'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Image, Switch } from 'react-native'
 import { IMAGES } from '../../assets/image'
 import { ButtonComponents, RowComponents, SectionComponents, SpaceComponents, TextComponents, TextInputComponents } from '../../components'
@@ -14,15 +14,21 @@ import { addAuth } from '../../redux/reducers/authReducer'
 import asyncStorage from '../../utils/asyncStorage/asyncStorage'
 import { appStorage } from '../../constants/appStorage'
 import { LoadingModal } from '../../Modals'
+import { useAsyncStorage } from '@react-native-async-storage/async-storage'
 
 const LoginScreen = ({ navigation }: any) => {
-  const [email, setEmail] = useState('')
-  const [pass, setPass] = useState('')
+  const [email, setEmail] = useState('quockhanh51201@gmail.com')
+  const [pass, setPass] = useState('245062')
   const [isRemember, setIsRemember] = useState(true)
   const [isLoadding, setIsLoadding] = useState(false)
+  const [isDisable, setIsDisable] = useState(true)
+  const { getItem } = useAsyncStorage(appStorage.useEmail)
   const dispatch = useDispatch()
 
   // ===============
+  useEffect(() => {
+    email && pass ? setIsDisable(false) : setIsDisable(true)
+  }, [email, pass])
   const handleLogin = async () => {
     const emailValidate = Validate.Email(email)
     if (!emailValidate) {
@@ -56,7 +62,6 @@ const LoginScreen = ({ navigation }: any) => {
     } catch (error) {
       console.log(error)
       setIsLoadding(false)
-
     }
   }
 
@@ -130,6 +135,7 @@ const LoginScreen = ({ navigation }: any) => {
             />
           }
           iconFlex='right'
+          disable={isDisable}
           onpress={() => handleLogin()}
         />
       </SectionComponents>

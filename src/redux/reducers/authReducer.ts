@@ -21,6 +21,7 @@ const authSLice = createSlice({
             state.id = action.payload.id;
             state.email = action.payload.email;
             state.accessToken = action.payload.accessToken;
+            console.log('action: ', action)
         },
         removeAuth: (state) => {
             state.id = '';

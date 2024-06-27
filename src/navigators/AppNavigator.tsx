@@ -3,16 +3,16 @@ import React, { useEffect, useLayoutEffect, useState } from 'react'
 import MainNavigation from './MainNavigation'
 import AuthNavigator from './AuthNavigator'
 import { useAsyncStorage } from '@react-native-async-storage/async-storage'
-import { authSelector } from '../redux/reducers/authReducer'
-import { useSelector } from 'react-redux'
+import { addAuth, authSelector } from '../redux/reducers/authReducer'
+import { useDispatch, useSelector } from 'react-redux'
 import { appStorage } from '../constants/appStorage'
 import { SplashScreen } from '../screens'
 
 const AppNavigator = () => {
     const auth = useSelector(authSelector)
     const { getItem } = useAsyncStorage(appStorage.token)
-    const [token, setToken] = useState<string | null>('')
     const [isShowSplash, setIsShowSplash] = useState(true)
+    const dispatch = useDispatch()
 
 
     useLayoutEffect(() => {
@@ -26,15 +26,14 @@ const AppNavigator = () => {
         return () => clearTimeout(timeOut)
     }, [])
 
-    // console.log(auth.accessToken)
     const checkLogin = async () => {
-        setToken(await getItem());
+        const res = await getItem()
+        // res && dispatch(addAuth(res))
     }
-
     return (
         <>
             {
-                isShowSplash ? <SplashScreen /> : token ? <MainNavigation /> : <AuthNavigator />
+                isShowSplash ? <SplashScreen /> : auth.accessToken ? <MainNavigation /> : <AuthNavigator />
             }
         </>
     )
