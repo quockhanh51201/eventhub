@@ -5,26 +5,11 @@ import { appStorage } from '../constants/appStorage';
 import { ForgotPasswordScreen, LoginScreen, Onboarding, SignUpScreen, VerificationScreen } from '../screens';
 const AuthNavigator = () => {
     const Stack = createNativeStackNavigator();
-    const { getItem } = useAsyncStorage(appStorage.useEmail)
-    const [isExistingUser, setIsExistingUser] = useState(false)
-
-    const checkExistingUser = async () => {
-        await getItem() ? setIsExistingUser(true) : setIsExistingUser(false)
-    }
-    useEffect(() => {
-        const fetchData = async () => {
-            await checkExistingUser();
-        };
-        fetchData();
-    }, [])
     return (
         <Stack.Navigator screenOptions={{
             headerShown: false
         }}>
-
-            {
-                !isExistingUser && < Stack.Screen name='Onboarding' component={Onboarding} />
-            }
+            <Stack.Screen name='Onboarding' component={Onboarding} />
             <Stack.Screen name='LoginScreen' component={LoginScreen} />
             <Stack.Screen name='SignUpScreen' component={SignUpScreen} />
             <Stack.Screen name='ForgotPasswordScreen' component={ForgotPasswordScreen} />

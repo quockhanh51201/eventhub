@@ -58,7 +58,6 @@ const LoginScreen = ({ navigation }: any) => {
         asyncStorage.addStorage(appStorage.useEmail, res.data.email)
       }
       setIsLoadding(false)
-      console.log(res)
     } catch (error) {
       console.log(error)
       setIsLoadding(false)

@@ -1,16 +1,15 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { AddSquare, Calendar, Location, User } from 'iconsax-react-native';
 import React, { ReactNode } from 'react';
-import ExploreNavigation from './ExploreNavigation';
-import EventNavigation from './EventNavigation';
+import { Platform } from 'react-native';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import { CirleComponents, TextComponents } from '../components';
+import { appColor } from '../constants/appColors';
 import { AddNewScreen } from '../screens';
+import EventNavigation from './EventNavigation';
+import ExploreNavigation from './ExploreNavigation';
 import MapNavigator from './MapNavigator';
 import ProfileNavigator from './ProfileNavigator';
-import { appColor } from '../constants/appColors';
-import { CirleComponents, TextComponents } from '../components';
-import { Platform, View } from 'react-native';
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
-import { AddSquare, Calendar, Location, User } from 'iconsax-react-native';
-import { globalStyles } from '../styles/globalStyles';
 
 const TabNavigator = () => {
   const Tab = createBottomTabNavigator();

@@ -11,7 +11,7 @@ import { ArrowDown, HambergerMenu, Notification } from 'iconsax-react-native'
 import { appFontFamilies } from '../../constants/appFontFamilies'
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 
-const HomeScreen = () => {
+const HomeScreen = ({ navigation }: any) => {
   const dispatch = useDispatch()
   const auth = useSelector(authSelector)
 
@@ -28,37 +28,39 @@ const HomeScreen = () => {
         }}
       >
         <SectionComponents>
-          <TouchableOpacity>
-            <RowComponents>
+          <RowComponents>
+            <TouchableOpacity
+              onPress={() => navigation.openDrawer()}
+            >
               <HambergerMenu size={24} color={appColor.white} />
-              <View style={{ alignItems: 'center', justifyContent: 'center', flex: 1 }}>
-                <RowComponents>
-                  <TextComponents text='Curent Location' color={appColor.white2} size={12} />
-                  <SpaceComponents width={1} />
-                  <MaterialIcons name='arrow-drop-down' size={18} color={appColor.white2} />
-                </RowComponents>
-                <TextComponents text='New york, USA' color={appColor.white} font={appFontFamilies.medium} size={13} />
-              </View>
-              <CirleComponents color='#524CE0' size={36}>
-                <Notification size={18} color={appColor.white} />
-                <View
-                  style={{
-                    backgroundColor: '#02E9FE',
-                    height: 10,
-                    width: 10,
-                    borderRadius: 100,
-                    borderWidth: 2,
-                    borderColor: '#524CE0',
-                    position: 'absolute',
-                    top: 5,
-                    right: 10
-                  }}
-                >
+            </TouchableOpacity>
+            <View style={{ alignItems: 'center', justifyContent: 'center', flex: 1 }}>
+              <RowComponents>
+                <TextComponents text='Curent Location' color={appColor.white2} size={12} />
+                <SpaceComponents width={1} />
+                <MaterialIcons name='arrow-drop-down' size={18} color={appColor.white2} />
+              </RowComponents>
+              <TextComponents text='New york, USA' color={appColor.white} font={appFontFamilies.medium} size={13} />
+            </View>
+            <CirleComponents color='#524CE0' size={36}>
+              <Notification size={18} color={appColor.white} />
+              <View
+                style={{
+                  backgroundColor: '#02E9FE',
+                  height: 10,
+                  width: 10,
+                  borderRadius: 100,
+                  borderWidth: 2,
+                  borderColor: '#524CE0',
+                  position: 'absolute',
+                  top: 5,
+                  right: 10
+                }}
+              >
 
-                </View>
-              </CirleComponents>
-            </RowComponents>
-          </TouchableOpacity>
+              </View>
+            </CirleComponents>
+          </RowComponents>
         </SectionComponents>
       </View>
       <View

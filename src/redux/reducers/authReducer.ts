@@ -5,13 +5,15 @@ import { createSlice } from "@reduxjs/toolkit"
 interface AuthState {
     id: string,
     email: string,
-    accessToken: string
+    accessToken: string,
+    userName: string
 }
 // Define the initial state using that type
 const initialState: AuthState = {
     id: '',
     email: '',
-    accessToken: ''
+    accessToken: '',
+    userName: ''
 }
 const authSLice = createSlice({
     name: 'auth',
@@ -21,12 +23,13 @@ const authSLice = createSlice({
             state.id = action.payload.id;
             state.email = action.payload.email;
             state.accessToken = action.payload.accessToken;
-            console.log('action: ', action)
+            state.userName = action.payload.userName
         },
         removeAuth: (state) => {
             state.id = '';
             state.email = '';
             state.accessToken = '';
+            state.userName = ''
         },
     },
 })
