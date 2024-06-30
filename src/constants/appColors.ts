@@ -8,6 +8,7 @@ export const appColor = {
     white2: '#FCFCFC',
     black: 'black',
     primary: '#3D56F0',
+    primary2: '#7974E7',
     link: '#5669FF',
     text: '#120D26',
     text_bl_2: '#28233C',

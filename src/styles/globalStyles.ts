@@ -53,6 +53,11 @@ export const globalStyles = StyleSheet.create({
         width: 30,
         height: 30,
         borderRadius: 100
+    },
+    tag: {
+        paddingVertical: 6,
+        paddingHorizontal: 12,
+        borderRadius: 100
     }
 })
 // export const heightStatusBar = () => Platform.OS == 'android' ? 20 : getStatusBarHeight() + isDynamicIsland() ? 35 : 0;
