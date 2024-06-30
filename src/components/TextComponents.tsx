@@ -12,22 +12,25 @@ interface Props {
     size?: number,
     font?: string,
     styles?: StyleProp<TextStyle>;
-    flex?: number
+    flex?: number,
+    numberOfLines?: number
 }
 const TextComponents = (props: Props) => {
     const {
-        text, color, size, font, styles, title, flex
+        text, color, size, font, styles, title, flex, numberOfLines
     } = props
-    return <Text style={[
-        globalStyles.text,
-        {
-            color: color ?? appColor.black,
-            fontSize: size ?? (title ? 24 : 14),
-            fontFamily: font ?? (title ? appFontFamilies.bold : appFontFamilies.regular),
-            flex
-        },
-        styles
-    ]}>{text}</Text>
+    return <Text
+        numberOfLines={numberOfLines}
+        style={[
+            globalStyles.text,
+            {
+                color: color ?? appColor.black,
+                fontSize: size ?? (title ? 24 : 14),
+                fontFamily: font ?? (title ? appFontFamilies.bold : appFontFamilies.regular),
+                flex,
+            },
+            styles
+        ]}>{text}</Text>
 }
 
 export default TextComponents

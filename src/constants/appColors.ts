@@ -12,6 +12,9 @@ export const appColor = {
     link: '#5669FF',
     text: '#120D26',
     text_bl_2: '#28233C',
+    text2: '#747688',
+    text3: '#716E9066',
+    text_red: '#F0635A',
     blue: '#5669FF',
     blue2: '#3D56F0'
 }

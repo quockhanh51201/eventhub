@@ -10,9 +10,10 @@ import AddNewScreen from "./AddNewScreen";
 import EventScreen from "./events/EventScreen";
 import MapScreen from "./maps/MapScreen";
 import ProfileScreen from "./profiles/ProfileScreen";
+import EventDetail from "./events/EventDetail";
 
 
 export {
     test, HomeScreen, LoginScreen, Onboarding, SplashScreen, SignUpScreen, VerificationScreen, ForgotPasswordScreen, AddNewScreen,
-    EventScreen, MapScreen, ProfileScreen
+    EventScreen, MapScreen, ProfileScreen, EventDetail
 };

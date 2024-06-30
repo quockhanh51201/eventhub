@@ -1,22 +1,44 @@
 import React from 'react'
-import { Button, StatusBar, Text, TouchableOpacity, View } from 'react-native'
+import { Button, FlatList, ImageBackground, StatusBar, Text, TouchableOpacity, View } from 'react-native'
 import { useDispatch, useSelector } from 'react-redux'
 import { authSelector, removeAuth } from '../../redux/reducers/authReducer'
 import asyncStorage from '../../utils/asyncStorage/asyncStorage'
 import { appStorage } from '../../constants/appStorage'
 import { globalStyles } from '../../styles/globalStyles'
 import { appColor } from '../../constants/appColors'
-import { CategoriesList, CirleComponents, RowComponents, SectionComponents, SpaceComponents, TagComponents, TextComponents } from '../../components'
+import { CardComponents, CategoriesList, CirleComponents, EventItem, RowComponents, SectionComponents, SpaceComponents, TabBarComponents, TagComponents, TextComponents } from '../../components'
 import { ArrowDown, HambergerMenu, Notification, SearchNormal1, Sort } from 'iconsax-react-native'
 import { appFontFamilies } from '../../constants/appFontFamilies'
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
+import { ScrollView } from 'react-native'
+import { IMAGES } from '../../assets/image'
+import { appInfo } from '../../constants/appInfo'
+import { Image } from 'react-native'
 
 const HomeScreen = ({ navigation }: any) => {
   const dispatch = useDispatch()
   const auth = useSelector(authSelector)
 
+  const ItemEvent = {
+    title: 'International Band Music Concert',
+    description: 'Enjoy your favorite dishe and a lovely your friends and family and have a great time. Food from local food trucks will be available for purchase. Read More...',
+    location: {
+      title: 'Gala Convention Center',
+      address: '36 Guild Street London, UK '
+    },
+    imageUrl: '',
+    users: [''],
+    authorId: '',
+    startAt: Date.now(),
+    endAt: Date.now(),
+    date: Date.now()
+  }
+  const renderItemEvent = ({ item, index }: any) => {
+    return (<EventItem item={ItemEvent} type='card' />)
+  }
+
   return (
-    <View style={[globalStyles.container]}>
+    <View style={[globalStyles.container, { backgroundColor: 'FFFFFFB3' }]}>
       <StatusBar barStyle={'light-content'} />
       <View
         style={{
@@ -97,13 +119,72 @@ const HomeScreen = ({ navigation }: any) => {
       <SectionComponents styles={{ marginTop: -14, paddingHorizontal: 0 }}>
         <CategoriesList isFill />
       </SectionComponents>
-      <View
+      <ScrollView
+        showsVerticalScrollIndicator={false}
         style={{
           flex: 1,
         }}
       >
-      </View>
-    </View>
+        <SpaceComponents height={20} />
+        <SectionComponents>
+          <TabBarComponents title='Upcoming Events' onPress={() => { }} />
+        </SectionComponents>
+        <SpaceComponents height={20} />
+        <SectionComponents styles={{ paddingHorizontal: 0 }}>
+          <FlatList
+            showsHorizontalScrollIndicator={false}
+            horizontal
+            data={Array.from({ length: 5 })}
+            renderItem={renderItemEvent}
+          />
+        </SectionComponents>
+        <SpaceComponents height={20} />
+        <SectionComponents>
+          <ImageBackground
+            source={IMAGES.invite}
+            style={{
+              minHeight: 140,
+              padding: 16,
+              flex: 1,
+              borderRadius: 12
+            }}
+            imageStyle={{
+              borderRadius: 12
+            }}
+            resizeMode='contain'
+          >
+            <TextComponents text='Invite your friends' title />
+            <TextComponents text='Get $20 for ticket' />
+            <RowComponents>
+
+              <TouchableOpacity style={[
+                globalStyles.button,
+                {
+                  marginTop: 12,
+                  backgroundColor: '#00F8FF',
+                  paddingHorizontal: 20
+                }
+              ]}>
+                <TextComponents text='INVATE' color={appColor.white2} font={appFontFamilies.medium} />
+              </TouchableOpacity>
+            </RowComponents>
+          </ImageBackground>
+        </SectionComponents>
+        <SpaceComponents height={20} />
+        <SectionComponents>
+          <TabBarComponents title='Nearby You' onPress={() => { }} />
+        </SectionComponents>
+        <SpaceComponents height={20} />
+        <SectionComponents styles={{ paddingHorizontal: 0 }}>
+          <FlatList
+            showsHorizontalScrollIndicator={false}
+            horizontal
+            data={Array.from({ length: 5 })}
+            renderItem={renderItemEvent}
+          />
+        </SectionComponents>
+      </ScrollView>
+    </View >
   )
 }
 
