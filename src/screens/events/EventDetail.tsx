@@ -149,6 +149,7 @@ const EventDetail = ({ navigation, route }: any) => {
                 style={{
                     paddingVertical: 12,
                     paddingHorizontal: 48,
+                    marginBottom: 10
                 }}>
                 <ButtonComponents
                     text='BUY TICKET $120'

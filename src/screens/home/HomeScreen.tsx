@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Button, FlatList, ImageBackground, StatusBar, Text, TouchableOpacity, View } from 'react-native'
 import { useDispatch, useSelector } from 'react-redux'
 import { authSelector, removeAuth } from '../../redux/reducers/authReducer'
@@ -14,10 +14,14 @@ import { ScrollView } from 'react-native'
 import { IMAGES } from '../../assets/image'
 import { appInfo } from '../../constants/appInfo'
 import { Image } from 'react-native'
+import Geolocation from '@react-native-community/geolocation';
+import axios from 'axios'
+import { AddressModel } from '../../models/AddressModel'
 
 const HomeScreen = ({ navigation }: any) => {
   const dispatch = useDispatch()
   const auth = useSelector(authSelector)
+  const [currentLocation, setCurrentLocation] = useState<AddressModel>()
 
   const ItemEvent = {
     title: 'International Band Music Concert',
@@ -33,9 +37,31 @@ const HomeScreen = ({ navigation }: any) => {
     endAt: Date.now(),
     date: Date.now()
   }
+
+  useEffect(() => {
+    Geolocation.getCurrentPosition(info => {
+      reverseGeocode({ lat: info.coords.latitude, long: info.coords.longitude })
+    });
+  }, [])
+
+  const reverseGeocode = async ({ lat, long }: { lat: Number, long: Number }) => {
+    const url = `https://revgeocode.search.hereapi.com/v1/revgeocode?at=${lat},${long}&lang=VI&apiKey=${appInfo.API_MAP_KEY}`;
+
+    try {
+      const res = await axios(url)
+      if (res && res.status === 200 && res.data) {
+        const items = res.data.items
+        setCurrentLocation(items[0])
+      }
+    } catch (error) {
+      console.log(error)
+    }
+  }
   const renderItemEvent = ({ item, index }: any) => {
     return (<EventItem item={ItemEvent} type='card' />)
   }
+  console.log('abc: ', currentLocation)
+
 
   return (
     <View style={[globalStyles.container, { backgroundColor: 'FFFFFFB3' }]}>
@@ -56,12 +82,16 @@ const HomeScreen = ({ navigation }: any) => {
               <HambergerMenu size={24} color={appColor.white} />
             </TouchableOpacity>
             <View style={{ alignItems: 'center', justifyContent: 'center', flex: 1 }}>
-              <RowComponents>
-                <TextComponents text='Curent Location' color={appColor.white2} size={12} />
-                <SpaceComponents width={1} />
-                <MaterialIcons name='arrow-drop-down' size={18} color={appColor.white2} />
-              </RowComponents>
-              <TextComponents text='New york, USA' color={appColor.white} font={appFontFamilies.medium} size={13} />
+              {currentLocation && (
+                <>
+                  <RowComponents>
+                    <TextComponents text='Curent Location' color={appColor.white2} size={12} />
+                    <SpaceComponents width={1} />
+                    <MaterialIcons name='arrow-drop-down' size={18} color={appColor.white2} />
+                  </RowComponents>
+                  <TextComponents text={`${currentLocation.address.city}, ${currentLocation.address.countryCode}`} color={appColor.white} font={appFontFamilies.medium} size={13} />
+                </>
+              )}
             </View>
             <CirleComponents color='#524CE0' size={36}>
               <Notification size={18} color={appColor.white} />
