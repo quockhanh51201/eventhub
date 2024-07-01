@@ -16,5 +16,4 @@ export const appColor = {
     text3: '#716E9066',
     text_red: '#F0635A',
     blue: '#5669FF',
-    blue2: '#3D56F0'
 }

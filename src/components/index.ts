@@ -6,6 +6,7 @@ import CirleComponents from './CirleComponents'
 import ContainerComponents from './ContainerComponents'
 import DrawerCustom from './DrawerCustom'
 import EventItem from './EventItem'
+import HeaderComponents from './HeaderComponents'
 import RowComponents from './RowComponents'
 import SectionComponents from './SectionComponents'
 import SpaceComponents from './SpaceComponents'
@@ -16,5 +17,5 @@ import TextInputComponents from './TextInputComponents'
 export {
     ButtonComponents, RowComponents, SectionComponents, SpaceComponents,
     TextComponents, TextInputComponents, CirleComponents, ContainerComponents, DrawerCustom, TagComponents, CategoriesList,
-    TabBarComponents, EventItem, CardComponents, AvatarGroup
+    TabBarComponents, EventItem, CardComponents, AvatarGroup, HeaderComponents
 }

@@ -9,5 +9,5 @@ export const IMAGES = {
   imgEvent: require('../assets/images/imgEvent.png'),
   invite: require('../assets/images/invite.png'),
   avtUser: require('../assets/images/avtUser.png'),
-
+  avtEvent: require('../assets/images/avtEvent.png'),
 }

@@ -8,7 +8,12 @@ import { Image } from 'react-native'
 import { IMAGES } from '../assets/image'
 import SpaceComponents from './SpaceComponents'
 
-const AvatarGroup = () => {
+
+interface Props {
+    size?: number
+}
+const AvatarGroup = (props: Props) => {
+    const { size } = props
     return (
         <RowComponents styles={{ marginVertical: 12 }}>
             {
@@ -16,8 +21,8 @@ const AvatarGroup = () => {
                     <Image key={`imgUser${index}`}
                         source={IMAGES.avtUser}
                         style={{
-                            width: 24,
-                            height: 24,
+                            width: size ?? 24,
+                            height: size ?? 24,
                             borderRadius: 100,
                             borderWidth: 1,
                             marginLeft: index > 0 ? -8 : 0,
@@ -30,7 +35,7 @@ const AvatarGroup = () => {
             <SpaceComponents width={5} />
             <TextComponents
                 text='+20 Going'
-                size={12}
+                size={size ? (size / 2) : 12}
                 color={appColor.primary}
                 font={appFontFamilies.semibold}
             />

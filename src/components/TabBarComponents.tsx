@@ -8,17 +8,20 @@ import { appFontFamilies } from '../constants/appFontFamilies'
 
 interface Props {
     title: string
-    onPress: () => void
+    onPress?: () => void
 }
 const TabBarComponents = (props: Props) => {
     const { title, onPress } = props
     return (
         <RowComponents>
             <TextComponents text={title} title flex={1} size={18} />
-            <RowComponents onpress={onPress}>
-                <TextComponents text='See all' size={12} color={appColor.gray} font={appFontFamilies.medium} />
-                <ArrowRight2 size={15} color={appColor.gray} variant='Bold' />
-            </RowComponents>
+            {
+                onPress && <RowComponents onpress={onPress}>
+                    <TextComponents text='See all' size={12} color={appColor.gray} font={appFontFamilies.medium} />
+                    <ArrowRight2 size={15} color={appColor.gray} variant='Bold' />
+                </RowComponents>
+            }
+
         </RowComponents>
     )
 }
